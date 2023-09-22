@@ -4,6 +4,7 @@ __pycache__/
 
 # Distribution / packaging
 /postgres-data
+/load_files_api_drf/media/
 
 
 # Unit test / coverage reports
