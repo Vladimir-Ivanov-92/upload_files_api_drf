@@ -16,14 +16,15 @@ Including another URLconf
 """
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 
 from load_files_api_drf import settings
-from upload_files.views import FileAPIView
+from upload_files.views import UploadFileAPIView, FilesAPIView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/v1/upload', FileAPIView.as_view())
+    path('api/v1/upload', UploadFileAPIView.as_view()),
+    path('api/v1/files', FilesAPIView.as_view()),
 ]
 
 

@@ -23,6 +23,9 @@ env = environ.Env(
     DATABASES_PASSWORD=(str),
     DATABASES_HOST=(str),
     DATABASES_PORT=(str),
+
+    REDIS_HOST=(str),
+    REDIS_PORT=(str),
 )
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -154,3 +157,19 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
+REST_FRAMEWORK = {
+    'DEFAULT_RENDERER_CLASSES': [
+        'rest_framework.renderers.JSONRenderer',
+        'rest_framework.renderers.BrowsableAPIRenderer',
+    ]
+}
+
+
+# Redis
+REDIS_HOST = env('REDIS_HOST')
+REDIS_PORT = env('REDIS_PORT')
+
+# Celery
+CELERY_BROKER_URL = f'redis://{REDIS_HOST}:{REDIS_PORT}'
+CELERY_RESULT_BACKEND = f'redis://{REDIS_HOST}:{REDIS_PORT}'
