@@ -23,8 +23,8 @@ from upload_files.views import UploadFileAPIView, FilesAPIView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/v1/upload', UploadFileAPIView.as_view()),
-    path('api/v1/files', FilesAPIView.as_view()),
+    path('api/v1/upload', UploadFileAPIView.as_view(), name='file-upload'),
+    path('api/v1/files', FilesAPIView.as_view(), name='files-list'),
 ]
 
 

@@ -25,7 +25,7 @@ class FileProcessing:
 
                 elif self.mime_type == "text/plain":
                     with open(f"{self.file_path}", "a") as f:
-                        f.write("\nNew line\n")
+                        f.write("New line\n")
                 else:
                     return Response(
                         data={"error": "Unsupported file type"},
