@@ -1,0 +1,52 @@
+version: '3.7'
+
+networks:
+  mynetwork:
+    driver: bridge
+
+services:
+  db:
+    container_name: db-postgres
+    image: postgres:14.1-alpine
+    restart: always
+    command: -p 5435
+    expose:
+      - 5435
+    ports:
+      - "5435:5435"
+    environment:
+      POSTGRES_USER: postgres_user
+      POSTGRES_PASSWORD: postgres_password
+      POSTGRES_DB: postgres_db
+      LC_MESSAGES: en_US.utf8
+      LC_MESSAGES: C
+    env_file:
+      - .env.dev
+    networks:
+      - mynetwork
+
+  redis:
+    image: redis:latest
+    container_name: redis
+    env_file:
+      - .env.dev
+    ports:
+      - "6379:6379"
+    networks:
+      - mynetwork
+
+  app:
+    container_name: app
+    build:
+      context: .
+    env_file:
+      - .env.dev
+    ports:
+      - "8000:8000"
+    command: ["docker/app.sh"]
+    depends_on:
+      - db
+      - redis
+#      - db_test
+    networks:
+      - mynetwork
