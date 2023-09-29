@@ -18,3 +18,5 @@ __pycache__/
 /load_files_api_drf/logs/
 /load_files_api_drf/htmlcov/
 /load_files_api_drf/.coverage
+/load_files_api_drf/.env.local
+/load_files_api_drf/docker-compose-local.yml

@@ -33,17 +33,24 @@ Celery обрабатывает загруженный файл и сохран�
 git clone https://github.com/Vladimir-Ivanov-92/upload_files_api_drf.git
 cd upload_files_api_drf 
 cd load_files_api_drf
+```
+3. Необходимо создать в текущей директории .env файл и заполнить данными 
+по образцу .env.example
+
+
+4. Запустите docker-compose:
+```bash
 docker-compose up -d --build
 ```
-3. Создайте таблицы в БД:
+5. Создайте таблицы в БД:
 ```bash
 docker-compose exec app make migrate
 ```
-4. Запустите Celery:
+6. Запустите Celery:
 ```bash
 docker-compose exec -d app make celery
 ```
-5.  Доступны следующие url:
+7.  Приложение запущено. Доступны следующие url:
 
     http://0.0.0.0:8000/api/v1/files
 
