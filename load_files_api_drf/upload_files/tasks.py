@@ -8,6 +8,9 @@ from upload_files.service import FileProcessing
 
 @shared_task
 def file_processing_task(file_id: int) -> None:
+    """
+    Создание Celery task обрабатывающего загруженный файл
+    """
     file_object = File.objects.get(pk=file_id)
     file_path = file_object.file.path
 

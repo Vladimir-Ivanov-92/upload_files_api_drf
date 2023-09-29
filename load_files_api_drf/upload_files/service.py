@@ -6,12 +6,18 @@ from rest_framework.response import Response
 
 
 class FileProcessing:
+    """
+    Класс для обработки файлов
+    """
 
     def __init__(self, file_path: str):
         self.file_path = file_path
         self.mime_type, self.encoding = mimetypes.guess_type(file_path)
 
     def file_processing(self) -> Response | Exception:
+        """
+        Метод, используемый для обработки файла в соответствии с его типом
+        """
         try:
             if self.mime_type:
                 if self.mime_type.startswith("image"):

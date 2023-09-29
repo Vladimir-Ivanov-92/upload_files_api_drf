@@ -11,6 +11,10 @@ class UploadFileAPIView(generics.CreateAPIView):
     serializer_class = FileSerializer
 
     def create(self, request, *args, **kwargs):
+        """
+        В создание модели File добавлена обработка загруженного файла с использованием
+        Celery
+        """
         try:
             # Создаем новый объект File с использованием сериализатора
             serializer = self.get_serializer(data=request.data)
